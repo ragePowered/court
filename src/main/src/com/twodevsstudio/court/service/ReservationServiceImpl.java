@@ -1,10 +1,13 @@
 package com.twodevsstudio.court.service;
 
 import com.twodevsstudio.court.domain.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
+@Service
 public class ReservationServiceImpl implements ReservationService {
 	public static final SportType TENNIS = new SportType(1, "Tennis");
 	public static final SportType SOCCER = new SportType(2, "Soccer");
@@ -12,11 +15,13 @@ public class ReservationServiceImpl implements ReservationService {
 	private List<Reservation> reservations;
 	private List<Court> courts;
 
+	Logger logger = LogManager.getLogger();
+
 	public ReservationServiceImpl() {
 		courts = new ArrayList<Court>() {{
-			add(new Court("Tennis #1"));
-			add(new Court("Tennis #2"));
-			add(new Court("Soccer #1"));
+			add(new Court(1, "Tennis #1"));
+			add(new Court(2, "Tennis #2"));
+			add(new Court(3, "Soccer #1"));
 		}};
 		reservations = new ArrayList<Reservation>() {{
 			add(new Reservation(courts.get(0), new GregorianCalendar(2015, 0, 7).getTime(), 16, new Player("Roger", "N/A"), TENNIS));
@@ -24,6 +29,9 @@ public class ReservationServiceImpl implements ReservationService {
 			add(new Reservation(courts.get(0), new GregorianCalendar(2015, 0, 7).getTime(), 20, new Player("James", "N/A"), TENNIS));
 			add(new Reservation(courts.get(2), new GregorianCalendar(2015, 0, 7).getTime(), 12, new Player("Bilbo", "N/A"), SOCCER));
 		}};
+
+
+//		logger.info();
 	}
 
 	@Override
@@ -72,20 +80,28 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public SportType getSportType(int sportTypeId) {
+	public SportType getSportTypeById(int sportTypeId) {
 		switch (sportTypeId) {
 			case 1:
 				return TENNIS;
 			case 2:
 				return SOCCER;
 			default:
-				System.out.println("NULL THROWN!!");
 				return null;
 		}
 	}
 
 	@Override
-	public List<String> getAllCourtsNames() {
-		return courts.stream().map(Court::getName).collect(Collectors.toList());
+	public List<Court> getAllCourts() {
+		return courts;
+	}
+
+	@Override
+	public Court getCourtById(int courtId) {
+		for (Court each : courts) {
+			if (courtId == each.getCourtId())
+				return each;
+		}
+		return null;
 	}
 }

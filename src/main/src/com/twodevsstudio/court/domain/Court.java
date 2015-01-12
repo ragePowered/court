@@ -2,13 +2,23 @@ package com.twodevsstudio.court.domain;
 
 
 public class Court {
+	private int courtId;
 	private String name;
 
 	public Court() {
 	}
 
-	public Court(String name) {
+	public Court(int courtId, String name) {
+		this.courtId = courtId;
 		this.name = name;
+	}
+
+	public int getCourtId() {
+		return courtId;
+	}
+
+	public void setCourtId(int courtId) {
+		this.courtId = courtId;
 	}
 
 	public String getName() {
@@ -26,14 +36,15 @@ public class Court {
 
 		Court court = (Court) o;
 
-		if (!name.equals(court.name)) return false;
+		if (courtId != court.courtId) return false;
+		if (name != null ? !name.equals(court.name) : court.name != null) return false;
 
 		return true;
 	}
 
 	@Override
 	public int hashCode() {
-		return name.hashCode();
+		return courtId;
 	}
 
 	@Override

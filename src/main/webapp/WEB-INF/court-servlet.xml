@@ -38,7 +38,7 @@
                 </prop>
             </props>
         </property>
-        <!--<property name="defaultErrorView" value="error"/>-->
+        <property name="defaultErrorView" value="error"/>
     </bean>
 
 </beans>

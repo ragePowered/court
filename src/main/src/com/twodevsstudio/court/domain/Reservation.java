@@ -62,4 +62,9 @@ public class Reservation {
 	public void setSportType(SportType sportType) {
 		this.sportType = sportType;
 	}
+
+	@Override
+	public String toString() {
+		return "Reservation{" + court + ", " + date + ", " + hour + ", " + player + ", " + sportType + '}';
+	}
 }

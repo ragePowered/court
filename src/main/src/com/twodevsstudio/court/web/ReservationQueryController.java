@@ -22,8 +22,8 @@ public class ReservationQueryController {
 	}
 
 	@ModelAttribute("courts")
-	public List<String> populateCourts() {
-		return reservationService.getAllCourtsNames();
+	public List<Court> populateCourts() {
+		return reservationService.getAllCourts();
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -33,11 +33,9 @@ public class ReservationQueryController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String setupForm(@ModelAttribute("court") Court court, Model model) {
-		List<Reservation> reservations = Collections.emptyList();
-		if (court != null) {
-			reservations = reservationService.query(court);
-		}
+	public String submitForm(@ModelAttribute("court") Court court, Model model) {
+		court = reservationService.getCourtById(court.getCourtId());
+		List<Reservation> reservations = reservationService.query(court);
 		model.addAttribute("reservations", reservations);
 		return "reservationQuery";
 	}

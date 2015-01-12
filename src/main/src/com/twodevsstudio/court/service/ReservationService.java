@@ -12,6 +12,7 @@ public interface ReservationService {
 	public void make(Reservation reservation) throws ReservationNotAvailableException;
 	public void makePeriodic(PeriodicReservation periodicReservation) throws ReservationNotAvailableException;
 	public List<SportType> getAllSportTypes();
-	public SportType getSportType(int sportTypeId);
-	public List<String> getAllCourtsNames();
+	public SportType getSportTypeById(int sportTypeId);
+	public List<Court> getAllCourts();
+	public Court getCourtById(int courtId);
 }
