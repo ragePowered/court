@@ -3,6 +3,7 @@ package com.twodevsstudio.court.web;
 import com.twodevsstudio.court.domain.Court;
 import com.twodevsstudio.court.domain.Reservation;
 import com.twodevsstudio.court.service.ReservationService;
+import com.twodevsstudio.court.utils.Loggable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,12 +27,14 @@ public class ReservationQueryController {
 		return reservationService.getAllCourts();
 	}
 
+	@Loggable
 	@RequestMapping(method = RequestMethod.GET)
 	public String setupForm(Model model) {
 		model.addAttribute("court", new Court());
 		return "reservationQuery";
 	}
 
+	@Loggable
 	@RequestMapping(method = RequestMethod.POST)
 	public String submitForm(@ModelAttribute("court") Court court, Model model) {
 		court = reservationService.getCourtById(court.getCourtId());

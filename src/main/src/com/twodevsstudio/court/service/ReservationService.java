@@ -4,6 +4,7 @@ import com.twodevsstudio.court.domain.Court;
 import com.twodevsstudio.court.domain.PeriodicReservation;
 import com.twodevsstudio.court.domain.Reservation;
 import com.twodevsstudio.court.domain.SportType;
+import com.twodevsstudio.court.utils.Loggable;
 
 import java.util.List;
 

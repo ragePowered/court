@@ -4,6 +4,6 @@
     <title>Error</title>
 </head>
 <body>
-An error has occured. Please contact our administrator for details.
+An error has occurred. Please contact our administrator for details.
 </body>
 </html>

@@ -5,6 +5,7 @@ import com.twodevsstudio.court.domain.PeriodicReservationValidator;
 import com.twodevsstudio.court.domain.Player;
 import com.twodevsstudio.court.domain.SportType;
 import com.twodevsstudio.court.service.ReservationService;
+import com.twodevsstudio.court.utils.Loggable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -56,6 +57,7 @@ public class PeriodicReservationController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
+	@Loggable
 	@RequestMapping(method = RequestMethod.GET)
 	public String setupForm(Model model) {
 		PeriodicReservation reservation = new PeriodicReservation();
@@ -64,6 +66,7 @@ public class PeriodicReservationController {
 		return "reservationCourtForm";
 	}
 
+	@Loggable
 	@RequestMapping(method = RequestMethod.POST)
 	public String submitForm(HttpServletRequest request, HttpServletResponse response,
 							 @ModelAttribute("reservation") PeriodicReservation reservation,

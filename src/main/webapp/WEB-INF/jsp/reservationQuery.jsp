@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<log:info message="reservationQuery.jsp accepted court {${court}} and items {${courts}}"/>
+<%--<log:info message="reservationQuery.jsp accepted court {${court}} and items {${courts}}"/>--%>
 <form:form modelAttribute="court" method="post">
     Court Name
     <form:select path="courtId">
@@ -18,7 +18,9 @@
     </form:select>
     <input type="submit" value="Query"/>
 </form:form>
-
+<%--<log:info><c:choose><c:when test="${reservations == null}">reservationQuery.jsp - there is no reservations from controller</c:when><c:otherwise>reservationQuery.jsp accepted next reservations:--%>
+    <%--<c:forEach items="${reservations}" var="reservation">${reservation}--%>
+    <%--</c:forEach></c:otherwise></c:choose></log:info>--%>
 <table>
     <tr>
         <th>Court Name</th>
@@ -29,7 +31,7 @@
     <c:forEach items="${reservations}" var="reservation">
         <tr>
             <td>${reservation.court.name}</td>
-            <td>${reservation.date}</td>
+            <td><fmt:formatDate value="${reservation.date}" pattern="dd.MM.yyyy"/></td>
             <td>${reservation.hour}</td>
             <td>${reservation.player.name}</td>
         </tr>

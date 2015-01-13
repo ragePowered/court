@@ -1,8 +1,7 @@
 package com.twodevsstudio.court.service;
 
 import com.twodevsstudio.court.domain.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.twodevsstudio.court.utils.Loggable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -14,8 +13,6 @@ public class ReservationServiceImpl implements ReservationService {
 
 	private List<Reservation> reservations;
 	private List<Court> courts;
-
-	Logger logger = LogManager.getLogger();
 
 	public ReservationServiceImpl() {
 		courts = new ArrayList<Court>() {{
@@ -29,11 +26,9 @@ public class ReservationServiceImpl implements ReservationService {
 			add(new Reservation(courts.get(0), new GregorianCalendar(2015, 0, 7).getTime(), 20, new Player("James", "N/A"), TENNIS));
 			add(new Reservation(courts.get(2), new GregorianCalendar(2015, 0, 7).getTime(), 12, new Player("Bilbo", "N/A"), SOCCER));
 		}};
-
-
-//		logger.info();
 	}
 
+	@Loggable
 	@Override
 	public List<Reservation> query(Court court) {
 		List<Reservation> result = new ArrayList<>();
@@ -44,6 +39,7 @@ public class ReservationServiceImpl implements ReservationService {
 		return result;
 	}
 
+	@Loggable
 	@Override
 	public void make(Reservation reservation) {
 		for (Reservation each : reservations) {
@@ -54,6 +50,7 @@ public class ReservationServiceImpl implements ReservationService {
 		reservations.add(reservation);
 	}
 
+	@Loggable
 	@Override
 	public void makePeriodic(PeriodicReservation periodicReservation) {
 		Calendar fromCalendar = Calendar.getInstance();

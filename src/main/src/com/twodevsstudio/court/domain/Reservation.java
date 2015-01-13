@@ -2,6 +2,7 @@ package com.twodevsstudio.court.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Reservation {
@@ -65,6 +66,6 @@ public class Reservation {
 
 	@Override
 	public String toString() {
-		return "Reservation{" + court + ", " + date + ", " + hour + ", " + player + ", " + sportType + '}';
+		return "Reservation{" + court + ", " + new SimpleDateFormat("dd.MM.yyyy").format(date) + ", " + hour + ", " + player + ", " + sportType + '}';
 	}
 }

@@ -4,16 +4,21 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd
                            http://www.springframework.org/schema/mvc
-                           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <mvc:annotation-driven/>
 
     <context:component-scan base-package="com.twodevsstudio.court"/>
+
+    <aop:aspectj-autoproxy/>
 
     <mvc:interceptors>
         <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
@@ -40,5 +45,13 @@
         </property>
         <property name="defaultErrorView" value="error"/>
     </bean>
+
+    <bean name="loggingAspect" class="com.twodevsstudio.court.utils.LoggingAspect" />
+    <!--<bean name="employeeAspectPointcut" class="com.journaldev.spring.aspect.EmployeeAspectPointcut" />-->
+    <!--<bean name="employeeAspectJoinPoint" class="com.journaldev.spring.aspect.EmployeeAspectJoinPoint" />-->
+    <!--<bean name="employeeAfterAspect" class="com.journaldev.spring.aspect.EmployeeAfterAspect" />-->
+    <!--<bean name="employeeAroundAspect" class="com.journaldev.spring.aspect.EmployeeAroundAspect" />-->
+    <!--<bean name="employeeAnnotationAspect" class="com.journaldev.spring.aspect.EmployeeAnnotationAspect" />-->
+
 
 </beans>

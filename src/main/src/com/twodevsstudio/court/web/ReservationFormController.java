@@ -2,6 +2,7 @@ package com.twodevsstudio.court.web;
 
 import com.twodevsstudio.court.domain.*;
 import com.twodevsstudio.court.service.ReservationService;
+import com.twodevsstudio.court.utils.Loggable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -41,6 +42,7 @@ public class ReservationFormController {
 		return reservationService.getAllSportTypes();
 	}
 
+	@Loggable
 	@RequestMapping(method = RequestMethod.GET)
 	public String setupForm(@RequestParam(required = false, value = "username") String username, Model model) {
 		Reservation reservation = new Reservation();
@@ -49,6 +51,7 @@ public class ReservationFormController {
 		return "reservationForm";
 	}
 
+	@Loggable
 	@RequestMapping(method = RequestMethod.POST)
 	public String submitForm(@ModelAttribute("reservation") Reservation reservation, BindingResult result, SessionStatus status, Model model) {
 		reservationValidator.validate(reservation, result);
